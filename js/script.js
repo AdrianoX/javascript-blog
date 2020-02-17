@@ -54,7 +54,6 @@ link.addEventListener('click', titleClickHandler);
 
 
 
-
 function generateTitleLinks(){
 
 /* [DONE] remove contents of titleList */
