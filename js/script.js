@@ -1,6 +1,6 @@
 const optArticleSelector = '.post',
-optTitleSelector = '.post-title',
-optTitleListSelector = '.titles';
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
 
 
 const titleClickHandler = function(event){
@@ -14,7 +14,7 @@ const titleClickHandler = function(event){
   const activeLinks = document.querySelectorAll('.titles a.active');
 
   for(let activeLink of activeLinks){
-  activeLink.classList.remove('active');
+    activeLink.classList.remove('active');
   }
 
   /* [DONE] add class 'active' to the clicked link */
@@ -27,12 +27,12 @@ const titleClickHandler = function(event){
   const activeArticles = document.querySelectorAll('.posts .active');
 
   for(let activeArticle of activeArticles){
-  activeArticle.classList.remove('active'); 
+    activeArticle.classList.remove('active'); 
   } 
 
   /* [DONE] get 'href' attribute from the clicked link */
 
-  const articleSelector = this.getAttribute("href");
+  const articleSelector = this.getAttribute('href');
   console.log('', articleSelector);
 
   /* [DONE]find the correct article using the selector (value of 'href' attribute) */
@@ -43,33 +43,33 @@ const titleClickHandler = function(event){
 
   targetArticle.classList.add('active');
   console.log(targetArticle);
-  }
+};
 
 const links = document.querySelectorAll('.titles a');
 console.log(links);
 
 for(let link of links){
-link.addEventListener('click', titleClickHandler);
+  link.addEventListener('click', titleClickHandler);
 }
 
 
 
 function generateTitleLinks(){
 
-/* [DONE] remove contents of titleList */
-const titleList = document.querySelector(optTitleListSelector);
-titleList.innerHTML = "";
+  /* [DONE] remove contents of titleList */
+  const titleList = document.querySelector(optTitleListSelector);
+  titleList.innerHTML = '';
 
   /* [DONE] for each article */
   const articles = document.querySelectorAll(optArticleSelector);
   
   /* [DONE] find all the articles and save them to variable: articles */
 
-  let html = "";
+  let html = '';
 
   for (let article of articles) {
     /* [DONE]get the article id */
-    const articleId = article.getAttribute("id");
+    const articleId = article.getAttribute('id');
     //console.log("id", articleId);
 
     /* [DONE]find the title element */
