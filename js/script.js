@@ -136,7 +136,6 @@ function generateTags() {
 
       /* [CHECK]generate HTML of the link */
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag  + '</a></li>';
-
       console.log(linkHTML);
 
 
@@ -165,12 +164,11 @@ function tagClickHandler(event) {
 
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement  = this;
-  const additional = clickedElement.querySelector('a');
+
   /* make a new constant "href" and read the attribute "href" of the clicked element */
-  //const href = clickedElement.getAttribute('href');
-  //console.log('clickedElement', clickedElement);
-  const href = additional.getAttribute('href');
-  console.log('href: ', href);
+  const href = clickedElement.getAttribute('href');
+  console.log('clickedElement', clickedElement);
+
 
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
@@ -330,3 +328,5 @@ function addClickListenerToAuthors() {
 }
 
 addClickListenerToAuthors();
+
+
