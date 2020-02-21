@@ -60,7 +60,6 @@ for(let link of links){
 }
 
 
-
 function generateTitleLinks(customSelector = '') {
 
   /* [DONE] remove contents of titleList */
