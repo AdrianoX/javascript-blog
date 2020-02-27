@@ -8,6 +8,7 @@ const optAuthorListElem = '.list.authors li a';
 const optTagsListSelector = '.tags.list';
 const optCloudClassCount = 5;
 const optCloudClassPrefix = 'tag-size-';
+const optAuthorListSelector = '.list.authors';
 
 
 
@@ -108,36 +109,10 @@ function generateTitleLinks(customSelector = '') {
 
 generateTitleLinks();
 
-
-
-//Params Tags
-function calculateTagsParams(tags) {
-  const params = {
-    max: 0,
-    min: 99999,
-  };
-  for (let tag in tags) {
-    params.max = Math.max(tags[tag], params.max);
-    params.min = Math.min(tags[tag], params.min);
-    console.log(tag+ ' is used ' + tags[tag] + ' times ');
-  }
-  return params;
-}
-
-function calculateTagClass (count, params){
-  const normalizedCount = count - params.min;
-  const normalizedMax = params.max - params.min;
-  const percentage = normalizedCount / normalizedMax;
-  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
-  const classAndValueNumber = optCloudClassPrefix + classNumber;
-  return classAndValueNumber;
-  //return optCloudClassPrefix + classNumber;
-
-}
-
-
 //TAGS GEN.
 function generateTags() {
+
+
   /* [NEW] create a new variable allTags with an empty array */
   let allTags = {};
 
@@ -151,42 +126,32 @@ function generateTags() {
     const tagList = article.querySelector(optArticleTagsSelector);
     tagList.innerHTML = '';
 
-
-    
-
-    /* [CHECK] make html variable with empty string */
     let html = '';
-    //console.log('', html);
 
-    /* [CHECK] get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-    //console.log('get tags', articleTags);
 
-    /* [CHECK] split tags into array */
     const articleTagsArray = articleTags.split(' ');
-    //console.log('', articleTagsArray);
 
     /* [CHECK] START LOOP: for each tag */
-    for(let tag of articleTagsArray){
+    for(let tag of articleTagsArray){ //news sport  
       console.log(tag);
 
       /* [CHECK]generate HTML of the link */
-      const tagHTMLData = {tag: tag};
-      console.log(tagHTMLData);
-      //const linkHTML = '<li><a href="#tag-' + tag + '"<span>' + tag + '</span></a></li> ';
-      //console.log = (linkHTML);
+      const tagHTMLData = '<li><a href="#' + tag + '"><span>' + tag + '</span></a></li>';
+
+
+      
 
 
       /* [CHECK] add generated code to html variable */
-      //html = html + linkHTML;
       html = html + tagHTMLData;
       console.log(html);
 
 
       /* [NEW] check if this link is NOT already in allTags */
-      if(!allTags[tag]){
+      if(!allTags[tag]) { 
         /* [NEW] add tag to allTags object */
-        allTags[tag] = 1;
+        allTags[tag] = 1; //allTags['code'] = 1
       } else {
         allTags[tag]++;
       }
@@ -208,9 +173,6 @@ function generateTags() {
   //tagList.innerHTML = allTags.join(' ');
   //console.log(allTags);
 
-  const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams', tagsParams);
-  
   /* [NEW]  create variable for all links HTML code*/
   let allTagsHTML = '';
   //const allTagsData = {tags: []};
@@ -218,7 +180,13 @@ function generateTags() {
   /* [NEW] Start Loop: for each tag in allTags: */
   for(let tag in allTags){
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"><span>' + tag + '</span></a></li>';
+
+    let className = '';
+    if(allTags[tag] > 3) className = 'tag-size-big';
+    else if(allTags[tag] > 2) className = 'tag-size-medium';
+    else className = 'tag-size-small';
+
+    const tagLinkHTML = '<li><a href="#tag-' + tag + '" class="' + className + '"><span>' + tag +'</span></a></li>';
     allTagsHTML += tagLinkHTML;
 
   }
@@ -230,6 +198,7 @@ function generateTags() {
 }
 
 generateTags();
+
 
 
 
@@ -404,5 +373,3 @@ function addClickListenerToAuthors() {
 }
 
 addClickListenerToAuthors();
-
-
