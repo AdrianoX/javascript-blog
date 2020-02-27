@@ -282,7 +282,13 @@ function generateAuthors() {
       allAuthors[articleAuthor]++;
     }
 
-    const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
+
+    /*let className = '';
+    if(allAuthors[author] > 2) className = 'author-size-big';
+    else if(allAuthors[author] > 1) className = 'author-size-medium';
+    else className = 'author-size-small';*/
+
+    const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '" class="' + /*className*/ + '"><span>' + articleAuthor + '</span></a></li>';
 
 
     /* add generated code to html variable */
@@ -291,12 +297,27 @@ function generateAuthors() {
     authorList.innerHTML = html;
   }
 
+  let html = '';
+
   for (let author in allAuthors) {
-    const allAuthorLinkHTML = '<li><a href="#author-' + author + '"><span>' + author + ' (' + allAuthors[author] + ')' + '</span></a></li>';
+
+    let className = '';
+    if(allAuthors[author] > 2) className = 'author-target-big';
+    else if(allAuthors[author] > 1) className = 'author-target-medium';
+    else className = 'author-target-small';
+
+    const allAuthorLinkHTML = '<li><a href="#author-' + author + '" class="' + className + '"><span>' + author + ' (' + allAuthors[author] + ')' + '</span></a></li>';
     console.log('',allAuthorLinkHTML);
 
-}
+    /* add generated code to html variable */
+    html = html + allAuthorLinkHTML;
+    /* add html for each author wrapper */
+    allAuthorLinkHTML.innerHTML = html;
 
+
+
+  }
+}
 generateAuthors();
 
 
@@ -341,8 +362,8 @@ function addClickListenerToAuthors() {
     author.addEventListener('click', authorClickHandler);
   
     /* END LOOP: for each link */
-    }
+  }
 
 }
 
-  addClickListenersToAuthors();
+addClickListenerToAuthors();
