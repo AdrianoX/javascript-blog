@@ -11,7 +11,7 @@ const optAuthorListElem = '.list.authors li a';
 const optTagsListSelector = '.tags.list';
 const optCloudClassCount = 5;
 const optCloudClassPrefix = 'tag-size-';
-const optAuthorListSelector = '.list.authors';
+const optAuthorsListSelector = '.list.authors';
   
 
 
@@ -163,7 +163,6 @@ function generateTags() {
   /* END LOOP: for every article: */
 
   /* [NEW] find list of tags in right column */
-  //const tagList = document.querySelector('.tags');
   const tagList = document.querySelector(optTagsListSelector);
   console.log(allTags);
 
@@ -283,12 +282,8 @@ function generateAuthors() {
     }
 
 
-    /*let className = '';
-    if(allAuthors[author] > 2) className = 'author-size-big';
-    else if(allAuthors[author] > 1) className = 'author-size-medium';
-    else className = 'author-size-small';*/
-
-    const authorLinkHTML = '<li><a href="#author-' + articleAuthor + '" class="' + /*className*/ + '"><span>' + articleAuthor + '</span></a></li>';
+    const authorLinkHTML = '<li><a href="#author-'  + articleAuthor + '"><span>' + articleAuthor + '</span></a></li>';
+    console.log('', authorLinkHTML);
 
 
     /* add generated code to html variable */
@@ -301,19 +296,21 @@ function generateAuthors() {
 
   for (let author in allAuthors) {
 
+
     let className = '';
     if(allAuthors[author] > 2) className = 'author-target-big';
     else if(allAuthors[author] > 1) className = 'author-target-medium';
     else className = 'author-target-small';
 
-    const allAuthorLinkHTML = '<li><a href="#author-' + author + '" class="' + className + '"><span>' + author + ' (' + allAuthors[author] + ')' + '</span></a></li>';
-    console.log('',allAuthorLinkHTML);
+    const allAuthorHTML = '<li><a href="#author-' + author + '" class="' + className + '"><span>' + author + ' (' + allAuthors[author] + ')' + '</span></a></li>';
+    console.log('',allAuthorHTML);
+
 
     /* add generated code to html variable */
-    html = html + allAuthorLinkHTML;
+    html = html + allAuthorHTML;
     /* add html for each author wrapper */
-    allAuthorLinkHTML.innerHTML = html;
-
+    authorList.innerHTML = allAuthorHTML;
+    
 
 
   }
