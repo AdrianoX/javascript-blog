@@ -382,10 +382,10 @@ function generateAuthors() {
   //console.log('auhorList: ', authorList);
 
   //create variable for all links HTML code
-  //With Handlebars
+  //Without Handlebars
   //let allAuthorsHTML = '';
 
-  //Without Handlebars
+  //With Handlebars
   const allAuthorsData = {authors: []};
 
   //START LOOP: each author in authors
@@ -396,6 +396,18 @@ function generateAuthors() {
     //Generate code of a link for allAuthorsHTML
     //Without Handlebars
     //allAuthorsHTML += '<li><a href="#author-' + author + '">' + author + '</a>( ' + allAuthors[author] + ')</li>';
+
+    /* Second option without handlebars :
+
+    let className = '';
+    if(allAuthors[author] > 2) className = 'author-target-big';
+    else if(allAuthors[author] > 1) className = 'author-target-medium';
+    else className = 'author-target-small';
+
+    const allAuthorHTML = '<li><a href="#author-' + author + '" class="' + className + '"><span>' + author + ' (' + allAuthors[author] + ')' + '</span></a></li>';
+    console.log('',allAuthorHTML);  */
+
+    
     
     //With Handlebars
     allAuthorsData.authors.push({
